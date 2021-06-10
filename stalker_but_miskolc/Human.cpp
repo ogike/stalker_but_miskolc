@@ -105,27 +105,23 @@ void Human::Attack(Human *attacker, Human *defender)
     {*/
         std::stringstream userOutput;
 
+        BodyPart* targetBodyPartAttacker;
+        BodyPart* targetBodyPartDefender;
+
         userOutput << attacker->name << " attacked " << defender->name;
         if(!defender->Parry(9,6))
         {
             userOutput << " and hit them." << std::endl;
             int i = rand() % defender->bodyPartList.size();
-            /*int j = rand() % defender->bodyPartList.size();
-            int l = rand() % defender->bodyPartList.size();
-            int k = rand() % defender->bodyPartList.size();
-            int ih = rand() % defender->bodyPartList.size();
-            int g= rand() % defender->bodyPartList.size();
-            int is = rand() % defender->bodyPartList.size();
-            int iss = rand() % defender->bodyPartList.size();
-            int isss = rand() % defender->bodyPartList.size();
-            defender->TakeHit(defender->bodyPartList[i],attacker->weapon.damage);*/
+            defender->TakeHit(defender->bodyPartList[i],attacker->weapon.damage);
+            targetBodyPartDefender = defender->bodyPartList[i];
 
             
             if(!defender->isDead && defender->Riposte(9,7))
             {
                 i = rand() % attacker->bodyPartList.size();
                 attacker->TakeHit(attacker->bodyPartList[i],defender->weapon.damage);
-
+                targetBodyPartAttacker = attacker->bodyPartList[i];
                 userOutput << defender->name << " attacked back " << attacker->name << "." << std::endl;
             }
         }
@@ -136,17 +132,32 @@ void Human::Attack(Human *attacker, Human *defender)
             {
                 int i = rand() % attacker->bodyPartList.size();
                 attacker->TakeHit(attacker->bodyPartList[i],defender->weapon.damage);
+                targetBodyPartAttacker = attacker->bodyPartList[i];
                 userOutput << defender->name << " attacked back " << attacker->name << "." << std::endl;
             }
         }
         
         if(defender->isDead == true)
         {
-            userOutput << defender->name << " got killed in the fight by " << attacker->name << "!" << std::endl;
+            if(targetBodyPartDefender == &defender->head)
+            {
+                userOutput << attacker->name << " beheaded " << defender->name << "!" << std::endl;
+            }
+            else
+            {
+                userOutput << defender->name << " got killed in the fight by " << attacker->name << "!" << std::endl;
+            }
         }
         else if(attacker->isDead == true)
         {
-            userOutput << attacker->name << " got killed in the fight by " << defender->name << "!" << std::endl;
+            if(targetBodyPartAttacker == &attacker->head)
+            {
+                userOutput << defender->name << " beheaded " << attacker->name << "!" << std::endl;
+            }
+            else
+            {
+                userOutput << attacker->name << " got killed in the fight by " << defender->name << "!" << std::endl;
+            }
         }
         userOutput << std::endl;
 
