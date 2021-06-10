@@ -86,10 +86,12 @@ int main()
         std::cout << *(aCsata.dead[i]) << std::endl;
     }*/
 
-    
+
     
     std::cout << std::endl << std::endl << (char)200 << "Thats all folks!" << " test" << std::endl;
 
+
+    std::cout << "test2" << std::endl;
 
 
     //human1.attack(human2,human1.getweapon())
