@@ -1,5 +1,5 @@
 
-#include <time.h>
+#include <ctime>
 
 #include "Human.h"
 #include "GroupBattle.h"
@@ -10,7 +10,7 @@ int main()
 {
     //setlocale(LC_ALL, "hun");
 
-    srand (time(NULL));
+    srand (time(nullptr));
     
     /*Arm arm(50,50);
     
