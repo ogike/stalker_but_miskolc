@@ -105,8 +105,8 @@ void Human::Attack(Human *attacker, Human *defender)
     {*/
         std::stringstream userOutput;
 
-        BodyPart* targetBodyPartAttacker;
-        BodyPart* targetBodyPartDefender;
+        BodyPart* targetBodyPartAttacker = nullptr;
+        BodyPart* targetBodyPartDefender = nullptr;
 
         userOutput << attacker->name << " attacked " << defender->name;
         if(!defender->Parry(9,6))
