@@ -6,9 +6,11 @@
 #pragma once
 #include "BodyParts.h"
 #include "Weapon.h"
+#include "Item.h"
 #include <string>
 #include <iostream>
 #include <stdlib.h>
+#include <vector>
 
 class Human
 {
@@ -26,8 +28,15 @@ class Human
         BodyPart leftLeg = Leg(40,40);
         BodyPart rightLeg = Leg(40,40);
 
+        std::vector<Item*> myItems;
+        int myMoney;
+
+        void AddItem(Item* item);
+        bool UseHealingItem();
+	
         bool IsDead() const;
         void TakeHit(BodyPart* b, int amount);
+        void Heal(float heal_amount, int wound_remove_chance);
         bool Parry(int n, int limit);//n: meddig general randomot; limit: mi folott jó
         bool Riposte(int n, int limit);//n: meddig general randomot; limit: mi folott jó
         float CalculateHealth();

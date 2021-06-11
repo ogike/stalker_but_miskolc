@@ -148,6 +148,8 @@
     <ClInclude Include="BodyParts.h" />
     <ClInclude Include="GroupBattle.h" />
     <ClInclude Include="Human.h" />
+    <ClInclude Include="Interfaces.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

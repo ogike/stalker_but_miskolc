@@ -76,10 +76,72 @@ void Human::TakeHit(BodyPart* b, int amount)
     CalculateHealth();
 }
 
+void Human::Heal(float heal_amount, int wound_remove_chance)
+{
+	if(isDead) //ez csak akkor pontos, ha elotte meg lett hivva a calculateHealth
+        return;
+
+    for (BodyPart* b : bodyPartList)
+    {
+	    if(b->GetCurHealth() < b->GetMaxHealth()) //if the current bodypart is damaged
+	    {
+            float oldCur = b->GetCurHealth();
+            b->ModifyCurHealth( heal_amount );
+
+            if (b->GetCurHealth() == b->GetMaxHealth()) //if we healed fully 
+            {
+                b->RemCondition(BodyPart::WOUND);
+            }
+            else if (rand() % 100 <  wound_remove_chance)
+            {
+                b->RemCondition(BodyPart::WOUND);
+            }
+	    	
+            heal_amount -= b->GetMaxHealth() - oldCur; //we subtract the just healed heal_amount
+
+	    	if(heal_amount <= 0) //if we cant heal anymore (the healing heal_amount has benn used)
+                return;
+	    }
+
+    }
+}
+
+void Human::AddItem(Item* item)
+{
+    myItems.push_back(item);
+}
+
+//egyenlore csak egy bandage-et probal hasznalni
+//TODO: megcsinalni normalisan
+bool Human::UseHealingItem()
+{
+    if(isDead)
+        return false;
+	
+	for (int i = 0; i < myItems.size(); ++i)
+	{
+		if(myItems[i]->isHealing())
+		{
+            HealingItem* curHealingItem = dynamic_cast<HealingItem*>(myItems[i]);
+            Heal(curHealingItem->healAmount, curHealingItem->woundRemoveChance);
+
+            myItems.erase(myItems.begin() + i);
+			//TODO: memoria kezeles
+
+			return true;
+		}
+	}
+	
+    return false;
+}
+
 bool Human::IsDead() const
 {
-    return isDead;
+    if (thorax.GetCurHealth() == 0 || head.GetCurHealth() == 0)
+        return true;
+    return false;
 }
+
 bool Human::Parry(int n, int limit) //calculates if the parry was succesful
 {
     int parryChance = rand() % n;

@@ -3,7 +3,12 @@
 
 #include "Human.h"
 #include "GroupBattle.h"
+#include "Item.h"
 #include <iostream>
+
+void CsataTeszt();
+void HealthTests();
+void InventoryTest();
 
 
 int main()
@@ -12,44 +17,15 @@ int main()
 
     srand (time(nullptr));
     
-    /*Arm arm(50,50);
-    
-    std::cout << arm.GetCurHealth()<< " " << arm.GetMaxHealth() << std::endl;
-    arm.ModifyCurHealth(-20);
-    std::cout << arm.GetCurHealth()<< " " << arm.GetMaxHealth() << std::endl;
-    arm.ModifyCurHealth(-200);
-    std::cout << arm.GetCurHealth()<< " " << arm.GetMaxHealth() << std::endl;
-    arm.ModifyCurHealth(200);
-    std::cout << arm.GetCurHealth()<< " " << arm.GetMaxHealth() << std::endl;
+    //HealthTests();
 
-    std::cout << arm.GetConditions().size() << std::endl;
-    arm.AddCondition(BodyPart::INFECTION);
-    std::cout << arm.GetConditions()[0] << " " << arm.GetConditions().size() << std::endl;
-    arm.AddCondition(BodyPart::INFECTION);
-    std::cout << arm.GetConditions().size() << std::endl;
-    arm.RemCondition(BodyPart::INFECTION);
-    arm.RemCondition(BodyPart::WOUND);
-    std::cout << arm.GetConditions().size() << std::endl;*/
+    //CsataTeszt();
 
+    InventoryTest();
+}
 
-    /*Human h("dzson");
-    
-    h.weapon = Sword("Giroszoskard");
-    h.leftArm.AddCondition(BodyPart::INFECTION);
-    h.thorax.AddCondition(BodyPart::INFECTION);
-    h.head.AddCondition(BodyPart::WOUND);
-    h.head.AddCondition(BodyPart::INFECTION);
-    std::cout << h << std::endl;
-
-    Human h2("lajos");
-
-    Human::Attack(&h,&h2);
-    Human::Attack(&h,&h2);
-   
-
-    std::cout << h2 << std::endl;*/
-
-
+void CsataTeszt()
+{
     Human h1("Dzson");
     h1.weapon = Sword("Giroszoskard");
     Human h2("Lajos");
@@ -72,11 +48,11 @@ int main()
     Human g8("Menogyerek8");
     Human g9("Menogyerek9");
     Human g10("Menogyerek10");
-    
-    std::vector<Human*> faction1 = {&h1,&h2,&h3,&h4,&h5,&h7,&h8,&h9,&h10,&h6};
-    std::vector<Human*> faction2 = {&g1,&g2,&g3,&g4,&g5,&g6,&g7,&g8,&g9,&g10};
 
-    GroupBattle aCsata(faction1,faction2);
+    std::vector<Human*> faction1 = { &h1,&h2,&h3,&h4,&h5,&h7,&h8,&h9,&h10,&h6 };
+    std::vector<Human*> faction2 = { &g1,&g2,&g3,&g4,&g5,&g6,&g7,&g8,&g9,&g10 };
+
+    GroupBattle aCsata(faction1, faction2);
     aCsata.SimulateBattle();
 
     /*std::cout << std::endl << "Eletuket vesztettek: " << std::endl;
@@ -87,7 +63,7 @@ int main()
     }*/
 
 
-    
+
     std::cout << std::endl << std::endl << (char)200 << "Thats all folks!" << " test" << std::endl;
 
 
@@ -95,4 +71,63 @@ int main()
 
 
     //human1.attack(human2,human1.getweapon())
+}
+
+void InventoryTest()
+{
+    Human h("dzson");
+    h.weapon = Sword("Giroszoskard");
+
+    Human h2("lajos");
+    std::cout << h2 << std::endl;
+
+    Human::Attack(&h, &h2);
+
+    std::cout << h2 << std::endl;
+
+    h2.AddItem(new HealingItem());
+    if (h2.UseHealingItem())
+        std::cout << "Lajos succesfully healed!" << std::endl << h2 << std::endl;
+	else
+        std::cout << "Couldnt use healing item!" << std::endl;
+}
+
+void HealthTests()
+{
+    /*Arm arm(50,50);
+
+    std::cout << arm.GetCurHealth()<< " " << arm.GetMaxHealth() << std::endl;
+    arm.ModifyCurHealth(-20);
+    std::cout << arm.GetCurHealth()<< " " << arm.GetMaxHealth() << std::endl;
+    arm.ModifyCurHealth(-200);
+    std::cout << arm.GetCurHealth()<< " " << arm.GetMaxHealth() << std::endl;
+    arm.ModifyCurHealth(200);
+    std::cout << arm.GetCurHealth()<< " " << arm.GetMaxHealth() << std::endl;
+
+    std::cout << arm.GetConditions().size() << std::endl;
+    arm.AddCondition(BodyPart::INFECTION);
+    std::cout << arm.GetConditions()[0] << " " << arm.GetConditions().size() << std::endl;
+    arm.AddCondition(BodyPart::INFECTION);
+    std::cout << arm.GetConditions().size() << std::endl;
+    arm.RemCondition(BodyPart::INFECTION);
+    arm.RemCondition(BodyPart::WOUND);
+    std::cout << arm.GetConditions().size() << std::endl;*/
+
+
+    /*Human h("dzson");
+
+    h.weapon = Sword("Giroszoskard");
+    h.leftArm.AddCondition(BodyPart::INFECTION);
+    h.thorax.AddCondition(BodyPart::INFECTION);
+    h.head.AddCondition(BodyPart::WOUND);
+    h.head.AddCondition(BodyPart::INFECTION);
+    std::cout << h << std::endl;
+
+    Human h2("lajos");
+
+    Human::Attack(&h,&h2);
+    Human::Attack(&h,&h2);
+
+
+    std::cout << h2 << std::endl;*/
 }
