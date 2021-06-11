@@ -3,6 +3,7 @@
 
 #include "Human.h"
 #include "GroupBattle.h"
+#include "WorldManager.h"
 #include <iostream>
 
 
@@ -72,7 +73,7 @@ int main()
     Human g8("Menogyerek8");
     Human g9("Menogyerek9");
     Human g10("Menogyerek10");
-    
+
     std::vector<Human*> faction1 = {&h1,&h2,&h3,&h4,&h5,&h7,&h8,&h9,&h10,&h6};
     std::vector<Human*> faction2 = {&g1,&g2,&g3,&g4,&g5,&g6,&g7,&g8,&g9,&g10};
 
@@ -95,4 +96,12 @@ int main()
 
 
     //human1.attack(human2,human1.getweapon())
+
+    WorldManager wm;
+    for(int i = 0; i < 10; i++)
+    {
+        Human tmp = wm.CreateHuman();
+        std::cout << tmp << std::endl;
+    }
+
 }
