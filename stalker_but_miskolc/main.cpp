@@ -51,7 +51,7 @@ int main()
     std::cout << h2 << std::endl;*/
 
 
-    Human h1("Dzson");
+    /*Human h1("Dzson");
     h1.weapon = Sword("Giroszoskard");
     Human h2("Lajos");
     Human h3("Tibi");
@@ -80,12 +80,12 @@ int main()
     GroupBattle aCsata(faction1,faction2);
     aCsata.SimulateBattle();
 
-    /*std::cout << std::endl << "Eletuket vesztettek: " << std::endl;
+    std::cout << std::endl << "Eletuket vesztettek: " << std::endl;
 
     for (int i = 0; i < aCsata.dead.size(); i++)
     {
         std::cout << *(aCsata.dead[i]) << std::endl;
-    }*/
+    }
 
 
     
@@ -93,15 +93,32 @@ int main()
 
 
     std::cout << "test2" << std::endl;
-
-
-    //human1.attack(human2,human1.getweapon())
+    */
 
     WorldManager wm;
-    for(int i = 0; i < 10; i++)
+
+    std::vector<Human*> faction1;
+    std::vector<Human*> faction2;
+
+    for(int i = 0; i < 100; i++)
     {
-        Human tmp = wm.CreateHuman();
-        std::cout << tmp << std::endl;
+        Human* h = wm.CreateHuman();
+        faction1.push_back(h);
     }
 
+    for(int i = 0; i < 100; i++)
+    {
+        Human* h = wm.CreateHuman();
+        faction2.push_back(h);
+    }
+
+    //std::cout << faction1.size() << " " << faction2.size();
+
+    GroupBattle aCsata2(faction1,faction2);
+    //aCsata2.SimulateBattle();
+
+    dateForm date = wm.getFormattedDate();
+    std::cout << date << std::endl;
+
+    wm.Simulate(15132);
 }

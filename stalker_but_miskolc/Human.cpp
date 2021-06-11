@@ -170,3 +170,7 @@ void Human::Attack(Human *attacker, Human *defender)
     
 }
 
+std::string Human::getName() const {
+    return name;
+}
+

@@ -26,6 +26,7 @@ class Human
         BodyPart leftLeg = Leg(40,40);
         BodyPart rightLeg = Leg(40,40);
 
+        std::string getName() const;
         bool IsDead() const;
         void TakeHit(BodyPart* b, int amount);
         bool Parry(int n, int limit);//n: meddig general randomot; limit: mi folott jó
