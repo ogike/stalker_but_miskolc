@@ -17,7 +17,7 @@ class BodyPart
         float GetCurHealth()const;
         float GetMaxHealth()const;
         void AddCondition(Conditions cond);
-        void RemCondition(Conditions cond);
+        bool RemCondition(Conditions cond); //returns false if there wasnt one of that condition
         std::vector<Conditions> GetConditions()const;
         void ClearConditions();
        

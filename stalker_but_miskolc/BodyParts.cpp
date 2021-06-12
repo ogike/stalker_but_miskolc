@@ -36,12 +36,15 @@ void BodyPart::AddCondition(Conditions cond)
     }
 }
 
-void BodyPart::RemCondition(Conditions cond)
+bool BodyPart::RemCondition(Conditions cond)
 {
+	//akarunk mi ilyen furcsa beepitett c++ dolgokat??
     if(std::count( conditions.begin(), conditions.end(), cond ) == 1)
     {
         conditions.erase(std::find( conditions.begin(), conditions.end(), cond ) );
+    	return true;
     }
+	return false;
 }
 
 std::vector<BodyPart::Conditions> BodyPart::GetConditions()const

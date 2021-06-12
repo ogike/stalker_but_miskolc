@@ -76,6 +76,25 @@ void Human::TakeHit(BodyPart* b, int amount)
     CalculateHealth();
 }
 
+void Human::AddItem(Item* item)
+{
+    myItems.push_back(item);
+}
+
+bool Human::RemoveItem(Item* item)
+{
+    for (int i = 0; i < myItems.size(); i++)
+    {
+	    if(myItems[i] == item)
+	    {
+            myItems.erase(myItems.begin() + i);
+	    	return true;
+	    }
+    }
+
+	return false;
+}
+
 void Human::Heal(float heal_amount, int wound_remove_chance)
 {
 	if(isDead) //ez csak akkor pontos, ha elotte meg lett hivva a calculateHealth
@@ -92,7 +111,7 @@ void Human::Heal(float heal_amount, int wound_remove_chance)
             {
                 b->RemCondition(BodyPart::WOUND);
             }
-            else if (rand() % 100 <  wound_remove_chance)
+            else if (rand() % 100 <  wound_remove_chance) //use utils.ChanceCalc() later
             {
                 b->RemCondition(BodyPart::WOUND);
             }
@@ -106,12 +125,8 @@ void Human::Heal(float heal_amount, int wound_remove_chance)
     }
 }
 
-void Human::AddItem(Item* item)
-{
-    myItems.push_back(item);
-}
 
-//egyenlore csak egy bandage-et probal hasznalni
+//egyenlore csak az elso healing item-et probal hasznalni
 //TODO: megcsinalni normalisan
 bool Human::UseHealingItem()
 {
@@ -126,13 +141,23 @@ bool Human::UseHealingItem()
             Heal(curHealingItem->healAmount, curHealingItem->woundRemoveChance);
 
             myItems.erase(myItems.begin() + i);
-			//TODO: memoria kezeles
+			//TODO: memoria kezeles?
 
 			return true;
 		}
 	}
 	
     return false;
+}
+
+void Human::IncreaseMoney(int amount)
+{
+    myMoney += amount;
+}
+
+void Human::DecreaseMoney(int amount)
+{
+    myMoney += amount;
 }
 
 bool Human::IsDead() const

@@ -28,11 +28,15 @@ class Human
         BodyPart leftLeg = Leg(40,40);
         BodyPart rightLeg = Leg(40,40);
 
-        std::vector<Item*> myItems;
-        int myMoney;
+        std::vector<Item*> myItems; //TODO this should probably be a set or sth later
+        int myMoney; //TODO setter/getters
 
         void AddItem(Item* item);
-        bool UseHealingItem();
+        bool RemoveItem(Item* item); //returns false if we couldnt find the item
+        bool UseHealingItem(); //returns false if human is dead or doesnt have a healing item
+
+        void IncreaseMoney(int amount);
+        void DecreaseMoney(int amount);
 	
         bool IsDead() const;
         void TakeHit(BodyPart* b, int amount);
