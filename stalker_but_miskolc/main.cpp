@@ -51,7 +51,7 @@ int main()
 
 
     Human h1("Dzson");
-    h1.weapon = Sword("Giroszoskard");
+    //h1.weapon = Sword("Giroszoskard");
     Human h2("Lajos");
     Human h3("Tibi");
     Human h4("John");
@@ -77,7 +77,16 @@ int main()
     std::vector<Human*> faction2 = {&g1,&g2,&g3,&g4,&g5,&g6,&g7,&g8,&g9,&g10};
 
     GroupBattle aCsata(faction1,faction2);
-    aCsata.SimulateBattle();
+    //aCsata.SimulateBattle();
+    
+
+
+    h1.weapon = GreatSword();
+    h8.weapon = Sword();
+    h7.weapon = Pistol();
+
+    Human::Attack(&h8, &h1, 100);
+
 
     /*std::cout << std::endl << "Eletuket vesztettek: " << std::endl;
 

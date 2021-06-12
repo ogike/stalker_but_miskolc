@@ -10,7 +10,7 @@ GroupBattle::GroupBattle(std::vector<Human*> f1,std::vector<Human*> f2)
     faction2 = f2;
 }
 
-void GroupBattle::SimulateBattle()
+/*void GroupBattle::SimulateBattle()
 {
     while(faction1.size() != 0 && faction2.size() != 0)
     {
@@ -51,4 +51,4 @@ void GroupBattle::SimulateBattle()
         }
     }
     std::cout << "----------" << faction1.size() << " v " << faction2.size() << "----------" << std::endl;
-}
+}*/

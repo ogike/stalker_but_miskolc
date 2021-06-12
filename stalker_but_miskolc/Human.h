@@ -1,6 +1,6 @@
 //Created by: Geri
 //Date: 2021-06-07
-//Edited: 2021-06-10 By: Geri
+//Edited: 2021-06-11 By: Geri
 
 
 #pragma once
@@ -17,7 +17,10 @@ class Human
         Human(std::string n);
         Human(Human* hP);
 
-        static void Attack(Human* attacker, Human* defender);
+        static void Attack(Human* attacker, Human* defender, int distance);
+        static void RangedFight(Human* attacker, Human* defender, int distance);
+        static void MeleeFight(Human* attacker, Human* defender, int distance);
+        static void MixedFight(Human* attacker, Human* defender, int distance);
 
         BodyPart head = Head(30,30);
         BodyPart thorax = Thorax(70,70);
@@ -28,12 +31,20 @@ class Human
 
         bool IsDead() const;
         void TakeHit(BodyPart* b, int amount);
-        bool Parry(int n, int limit);//n: meddig general randomot; limit: mi folott jó
-        bool Riposte(int n, int limit);//n: meddig general randomot; limit: mi folott jó
+        bool Parry(Human* attacker);
+        bool Riposte(Human* attacker, int basePercentage);
         float CalculateHealth();
         Weapon weapon = Sword();
         std::vector<BodyPart*> bodyPartList = {&head, &thorax, &leftArm, &leftLeg, &rightArm, &rightLeg}; // leheet privat kene
+        std::vector<std::string> bodyPartStrings = {"head","thorax","left arm","left leg","right arm","right leg"};
         std::vector<BodyPart*> limbs = {&leftArm, &leftLeg, &rightArm, &rightLeg};
+
+        enum BattleStatus
+        {
+            IDLE, READY, RETREATING, IN_COVER
+        };
+        BattleStatus battleStatus = IDLE;
+
 
         
 
@@ -44,7 +55,7 @@ class Human
         int height; //in cm
         int age; //in days
         bool isDead = false;
-        float health = 260; //sum of bodypart healths
+        float health = CalculateHealth(); //sum of bodypart healths
 
     friend std::ostream& operator<< (std::ostream& o, Human& h)
     {
