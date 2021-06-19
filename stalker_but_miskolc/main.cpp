@@ -3,7 +3,10 @@
 
 #include "Human.h"
 #include "GroupBattle.h"
+#include "Factions.h"
+
 #include <iostream>
+
 
 
 int main()
@@ -93,6 +96,8 @@ int main()
 
     std::cout << "test2" << std::endl;
 
+
+    Factions pirate("Kaloz", &h1, faction1);
 
     //human1.attack(human2,human1.getweapon())
 }

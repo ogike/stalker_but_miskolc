@@ -4,3 +4,18 @@
 
 #pragma once
 
+#include <vector>
+#include "Building.h"
+
+class Factions
+{
+    protected:
+        std::string factionName;
+        Human* leader;
+        std::vector<Human*> factionMembers;
+        std::vector<Building> buildings;
+
+    public:
+        Factions(std::string fName, Human* l, std::vector<Human*> fMembers);
+
+};
