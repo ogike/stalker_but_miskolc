@@ -99,5 +99,4 @@ int main()
 
     Factions pirate("Kaloz", &h1, faction1);
 
-    //human1.attack(human2,human1.getweapon())
 }

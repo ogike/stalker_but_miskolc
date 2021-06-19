@@ -13,4 +13,8 @@ add_executable(stalker_but_miskolc
         Human.cpp
         Human.h
         main.cpp
-        Weapon.h)
+        Weapon.h
+        Factions.cpp
+        Factions.h
+        Building.h
+        Building.cpp)
