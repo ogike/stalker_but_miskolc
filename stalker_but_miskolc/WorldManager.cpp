@@ -28,19 +28,29 @@ Human* WorldManager::CreateHuman()
     return new Human(names[i]);
 }
 
-int WorldManager::getDaysElapsed() const {
+int WorldManager::getDaysElapsed() const
+{
     return daysElapsed;
 }
 
-dateForm WorldManager::getFormattedDate() const{
+dateForm WorldManager::getFormattedDate() const
+{
     return Date::addDays(15, 3, 2031, daysElapsed); // startind date 2031.03.15
 }
 
-void WorldManager::Simulate(int days) {
-    //itt kell majd mindent simulalni
+void WorldManager::Simulate(int days)
+{
+    for (int i = 0; i < days; i++)
+    {
+        //itt kell majd mindent simulalni
 
-    daysElapsed += days;
-    dateForm date = Date::addDays(15, 3, 2031, daysElapsed);
-    std::cout << "Days elapsed: " << days << ", current date: " << date;
+        //Sleep(10);
+
+        daysElapsed += 1;
+        dateForm date = Date::addDays(15, 3, 2031, daysElapsed);
+        system("cls");
+        std::cout << date;
+
+    }
 }
 

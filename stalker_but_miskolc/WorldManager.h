@@ -8,6 +8,8 @@
 #include <vector>
 #include <fstream>
 #include <ostream>
+#include <cstdlib>
+#include <windows.h>
 
 #include "Human.h"
 #include "Date.h"
