@@ -116,5 +116,5 @@ dateForm Date::addDays(int d1, int m1, int y1, int x)
 
 
 
-    return {y2, m2, d2};
+    return {y2, m2, d2, MORNING};
 }

@@ -6,6 +6,7 @@
 #pragma once
 #include "BodyParts.h"
 #include "Weapon.h"
+#include "Date.h"
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -36,7 +37,9 @@ class Human
         std::vector<BodyPart*> bodyPartList = {&head, &thorax, &leftArm, &leftLeg, &rightArm, &rightLeg}; // leheet privat kene
         std::vector<BodyPart*> limbs = {&leftArm, &leftLeg, &rightArm, &rightLeg};
 
-        
+        enum status{READY_TO_WORK, WORKING} status;
+        dateForm workStart = {10, 10, 10, MORNING};
+
 
     private:
         

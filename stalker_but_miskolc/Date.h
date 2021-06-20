@@ -7,12 +7,14 @@
 #include <iostream>
 #include <ostream>
 
+enum TimeOfDay{MORNING, AFTERNOON, EVENING};
 
 struct dateForm
 {
     int year;
     int month;
     int day;
+    TimeOfDay timeOfDay;
 
     friend std::ostream& operator<< (std::ostream& o, dateForm& d)
     {
@@ -38,6 +40,20 @@ struct dateForm
             {
                 o << d.year << "." << d.month << "." << d.day << ".";
             }
+        }
+
+        o << " ";
+
+        switch (d.timeOfDay) {
+            case MORNING:
+                o << "Morning.";
+                break;
+            case AFTERNOON:
+                o << "Afternoon.";
+                break;
+            case EVENING:
+                o << "Evening.";
+                break;
         }
 
         return o;

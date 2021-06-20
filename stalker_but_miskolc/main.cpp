@@ -14,7 +14,7 @@ int main()
 
     WorldManager wm;
 
-    std::vector<Human*> faction1;
+/*    std::vector<Human*> faction1;
     std::vector<Human*> faction2;
 
     for(int i = 0; i < 100; i++)
@@ -27,17 +27,23 @@ int main()
     {
         Human* h = wm.CreateHuman();
         faction2.push_back(h);
-    }
+    }*/
 
     //std::cout << faction1.size() << " " << faction2.size();
 
-    GroupBattle aCsata2(faction1,faction2);
+    //GroupBattle aCsata2(faction1,faction2);
     //aCsata2.SimulateBattle();
 
-    dateForm date = wm.getFormattedDate();
-    std::cout << date << std::endl;
+    //dateForm date = wm.getFormattedDate();
+    //std::cout << date << std::endl;
 
-    wm.Simulate(15132);
+    Faction* test = new Test("test1", {});
+    Faction* test2 = new Test2("test2", {});
+
+    wm.factions.push_back(test);
+    wm.factions.push_back(test2);
+
+    wm.Simulate(10);
 
 
 }

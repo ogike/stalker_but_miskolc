@@ -13,4 +13,4 @@ add_executable(stalker_but_miskolc
         Human.cpp
         Human.h
         main.cpp
-        Weapon.h WorldManager.h WorldManager.cpp Date.h Date.cpp)
+        Weapon.h WorldManager.h WorldManager.cpp Date.h Date.cpp Faction.cpp Faction.h)

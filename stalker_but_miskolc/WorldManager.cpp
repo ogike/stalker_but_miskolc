@@ -47,10 +47,74 @@ void WorldManager::Simulate(int days)
         //Sleep(10);
 
         daysElapsed += 1;
-        dateForm date = Date::addDays(15, 3, 2031, daysElapsed);
-        system("cls");
-        std::cout << date;
+        date = Date::addDays(15, 3, 2031, daysElapsed);
+
+
+        SimulateMorning();
+
+        SimulateAfternoon();
+
+        SimulateEvening();
 
     }
+}
+
+void WorldManager::SimulateMorning() {
+    date.timeOfDay = MORNING;
+
+    for(Faction* _f : factions)
+    {
+        _f->SimulateMorning();
+    }
+
+    std::cout << date;
+    //Sleep(1000);
+    #ifdef __linux__
+        system("clear");
+    #elif _WIN32
+    #include <windows.h>
+        system("cls");
+    #endif
+
+}
+
+void WorldManager::SimulateAfternoon() {
+    date.timeOfDay = AFTERNOON;
+
+    for(Faction* _f : factions)
+    {
+        _f->SimulateAfternoon();
+    }
+
+    std::cout << date;
+    //Sleep(1000);
+    #ifdef __linux__
+        system("clear");
+    #elif _WIN32
+    #include <windows.h>
+        system("cls");
+    #endif
+}
+
+void WorldManager::SimulateEvening() {
+    date.timeOfDay = EVENING;
+
+    for(Faction* _f : factions)
+    {
+        _f->SimulateEvening();
+    }
+
+    std::cout << date;
+    //Sleep(1000);
+    #ifdef __linux__
+        system("clear");
+    #elif _WIN32
+    #include <windows.h>
+        system("cls");
+    #endif
+}
+
+TimeOfDay WorldManager::getTimeOfDay() {
+    return date.timeOfDay;
 }
 
